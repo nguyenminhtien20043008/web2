@@ -4,7 +4,7 @@ $userModel = new UserModel();
 
 $user = NULL; //Add new user
 $id = NULL;
-
+//view idor
 if (!empty($_GET['id'])) {
     $id = base64_decode($_GET['id']);
     $newid = substr($id,15);

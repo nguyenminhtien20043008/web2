@@ -4,6 +4,7 @@ session_start();
 
 require_once 'models/UserModel.php';
 $userModel = new UserModel();
+//update idor
   $key = "khds7809ydghdbd";
 //var_dump($key);
 $users = $userModel->getUsers();

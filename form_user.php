@@ -6,7 +6,7 @@ $userModel = new UserModel();
 
 $user = NULL; //Add new user
 $_id = NULL;
-
+//form update idor
 if (!empty($_GET['id'])) { 
     $id = base64_decode($_GET['id']);
     $newid = substr($id,15);
