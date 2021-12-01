@@ -84,11 +84,11 @@ class UserModel extends BaseModel {
             $stm->execute();
             $users = [];
             $users = $stm->get_result()->fetch_all(MYSQLI_ASSOC);
-            var_dump($sql);
+            // var_dump($sql);
             // $users = $this->select($sql);
         } else {
             $sql = 'SELECT * FROM users';
-            var_dump($sql);
+            // var_dump($sql);
             $users = $this->select($sql);
         }
 
