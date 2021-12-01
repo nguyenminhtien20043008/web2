@@ -77,13 +77,22 @@ class UserModel extends BaseModel {
     public function getUsers($params = []) {
         //Keyword
         if (!empty($params['keyword'])) {
-            $sql = 'SELECT * FROM users WHERE name LIKE "%' . $params['keyword'] .'%"';
+            $sql = 'SELECT * FROM users WHERE name LIKE ?';
+            $stm = self::$_connection->prepare($sql);
+            $name = '%'. $params['keyword'] . '%';
+            $stm->bind_param('s',$name);
+            $stm->execute();
+            $users = [];
+            $users = $stm->get_result()->fetch_all(MYSQLI_ASSOC);
+            var_dump($sql);
+            // $users = $this->select($sql);
         } else {
             $sql = 'SELECT * FROM users';
+            var_dump($sql);
+            $users = $this->select($sql);
         }
 
-        $users = $this->select($sql);
-
+        // $users = $this->select($sql);
         return $users;
     }
 }

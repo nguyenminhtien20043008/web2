@@ -4,11 +4,11 @@ $userModel = new UserModel();
 
 $user = NULL; //Add new user
 $id = NULL;
-
+//view idor
 if (!empty($_GET['id'])) {
     $id = base64_decode($_GET['id']);
     $newid = substr($id,15);
-    var_dump($newid);
+    //var_dump($newid);
     $user = $userModel->findUserById($newid);//Update existing user
 }
 

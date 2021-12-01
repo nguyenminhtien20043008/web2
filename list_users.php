@@ -6,9 +6,19 @@ require_once 'models/UserModel.php';
 $userModel = new UserModel();
   $key = "khds7809ydghdbd";
 //var_dump($key);
-$users = $userModel->getUsers();
+$params = [];
 
+if (!empty($_GET['keyword'])) {
+    $params['keyword'] = $_GET['keyword'];
+    // $search = ['/', '//', ';', '%'];
+    // $replace = '';
 
+    // // tim kiem roi thay doi ki tu dac biet
+    // $result = str_replace($search, $replace, $_GET['keyword']);
+    // $params['keyword'] = $result;
+}
+
+$users = $userModel->getUsers($params);
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,6 +40,7 @@ $users = $userModel->getUsers();
                         <th scope="col">ID</th>
                         <th scope="col">Username</th>
                         <th scope="col">Fullname</th>
+                        <th scope="col">Email</th>
                         <th scope="col">Type</th>
                         <th scope="col">Actions</th>
                     </tr>
@@ -43,6 +54,9 @@ $users = $userModel->getUsers();
                             </td>
                             <td>
                                 <?php echo $user['fullname']?>
+                            </td>
+                            <td>
+                                <?php echo $user['email']?>
                             </td>
                             <td>
                                 <?php echo $user['type']?>
