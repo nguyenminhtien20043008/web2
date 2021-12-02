@@ -43,16 +43,24 @@ class UserModel extends BaseModel {
      * @return mixed
      */
     public function updateUser($input) {
-        $sql = 'UPDATE users SET 
+        $temp='SELECT vesion FROM user where id='.input['id'].'';
+        $newv=$this ->select($temp);
+        if ($newTemp[0] ['vesion'] == input['vesion']){
+            $newv = $input['vesion'] + 1;
+            $sql = 'UPDATE users SET 
                  name = "' . $input['name'] .'", 
                  fullname = "' . $input['fullname'] .'",
                  email = "' . $input['email'] .'",
                  type = "' . $input['type'] .'",
-                 password="'. md5($input['password']) .'"
+                 password="'. md5($input['password']) .'",type = "'.$input['type'].'", vesion ="'.$newv.'"
                 WHERE id = ' . $input['id'];
-        $user = $this->update($sql);
-
-        return $user;
+            $user = $this->update($sql);
+            header('location:list_user.php');
+             return $user;
+            }
+        else{
+            header('location:list_user.php?err');
+        }
     }
 
     /**

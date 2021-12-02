@@ -41,6 +41,7 @@ if (!empty($_POST['submit'])) {
                 </div>
                 <form method="POST">
                     <input type="hidden" name="id" value="<?php substr($id,15) ?>">
+                    <input type="hidden" name="vesion" value="<?php if (!empty($user[0]['vesion'])) echo $user[0]['vesion'] ?>">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input class="form-control" name="name" placeholder="Name" value='<?php if (!empty($user[0]['name'])) echo $user[0]['name'] ?>'>
